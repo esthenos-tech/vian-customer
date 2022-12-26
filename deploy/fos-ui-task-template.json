@@ -1,0 +1,34 @@
+{
+  "family": "${FOS_UI_TASK_FAMILY}",
+  "taskRoleArn": "${AWS_ROLE_ARN}",
+  "executionRoleArn": "${AWS_ROLE_ARN}",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "2048",
+  "memory": "4096",
+  "containerDefinitions": [
+    {
+      "name": "fos-ui-dev",
+      "image": "${ECR_ARN}:latest",
+      "cpu": 1024,
+      "memory": 2048,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "hostPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "environment": [],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "${AWS_FOS_UI_LOGS_GROUP}",
+          "awslogs-region": "${AWS_DEFAULT_REGION}",
+          "awslogs-stream-prefix": "ecs"
+        }
+      }
+    }
+  ]
+}

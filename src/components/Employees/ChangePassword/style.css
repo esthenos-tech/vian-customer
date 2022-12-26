@@ -1,0 +1,23 @@
+.eye-span {
+  position: absolute;
+  right: 5px;
+  font-size: 1.4rem;
+}
+.password-field {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  padding-right: 2.8rem;
+}
+.input-element-wrapper {
+  display: flex;
+}
+.btn-class {
+  font-size: 1.5rem;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  margin-left: -3.76rem;
+  margin-top: 1.65rem;
+  cursor: pointer;
+  right: 48px;
+}

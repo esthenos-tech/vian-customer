@@ -1,0 +1,23 @@
+// @import "../node_modules/prismjs/themes/prism-tomorrow";
+@import "./assets/scss/app.scss";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100&display=swap");
+
+.btn {
+  font-weight: 600 !important;
+}
+.mandate-field {
+  color: red !important;
+  padding: 0px 3px;
+}
+
+.line {
+  position: relative;
+}
+.line:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  border-right: 1px solid #cfc7c0;
+  top: 10%;
+  bottom: 10%;
+}

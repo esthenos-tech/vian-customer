@@ -1,0 +1,59 @@
+#bitbucket-pipelines.yml
+image: node:12.18.3
+
+pipelines:
+  default:
+    - step: &style-check
+        name: Install dependencies
+        caches:
+          - node
+        script:
+          - yarn install
+    - step: &run-tests
+        name: Test and build
+        caches:
+          - node
+        script:
+          - yarn test
+
+  branches:
+    master:
+      - parallel:
+          - step: *style-check
+          - step: *run-tests
+      - step: &deploy
+          name: ECR Push2
+          deployment: staging
+          image: atlassian/default-image:3
+          services:
+            - docker
+          caches:
+            - docker
+          script:
+            # build the image
+            - docker build -t fos-ui-dev .
+            # use the pipe to push to AWS ECR
+            - pipe: atlassian/aws-ecr-push-image:1.5.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                IMAGE_NAME: fos-ui-dev
+                TAGS: "latest"
+            # Create web application task definition and update on Fargate
+            - envsubst < deploy/fos-ui-task-template.json > task-definition.json
+            - pipe: atlassian/aws-ecs-deploy:1.0.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                CLUSTER_NAME: fos-ui-dev
+                SERVICE_NAME: fos-ui-dev-service
+                TASK_DEFINITION: "task-definition.json"
+      - step:
+          name: Notify on Slack
+          script:
+            - pipe: atlassian/slack-notify:1.0.0
+              variables:
+                WEBHOOK_URL: $SLACK_WEBHOOK_URL
+                MESSAGE: "Deployed to production"

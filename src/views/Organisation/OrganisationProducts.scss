@@ -1,0 +1,33 @@
+.font-cls {
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+.icon-font-cls {
+  font-size: 16px !important;
+  font-weight: bold !important;
+}
+/*-------=== Date picker CSS =====----*/
+.arrow-icon {
+  display: inline-block;
+  padding: 5px;
+  font-size: 18px;
+  background-color: #756df0;
+  border-radius: 0px 6px 6px 0px;
+  color: #fff;
+}
+.arrow-right {
+  border-radius: 0px 6px 6px 0px;
+  cursor: pointer;
+}
+.arrow-left {
+  border-radius: 6px 0px 0px 6px;
+  cursor: pointer;
+}
+.react-datepicker__day-names {
+  cursor: pointer;
+}
+
+.update-Icon {
+  font-size: 20px;
+  color: #756df0;
+}
