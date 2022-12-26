@@ -5,6 +5,7 @@
           href="https://fonts.googleapis.com/css?family=Montserrat"
           rel="stylesheet"
         />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
           body {
             font-family: "Montserrat";
@@ -148,7 +149,7 @@
           }
         </style>
       </head>
-<body style="background-color: #276955; color: white;">
+<body style="background-color: #276955;">
     <div class="shape"></div>
 <div class="shape"></div>
 <div class="shape"></div>
@@ -250,18 +251,38 @@
   series.dataFields.id = "id";
   series.dataFields.children = "children";
   series.dataFields.linkWith = "link";
+  var tooltipHTML = 
+  `<div>
+    <strong style="color:#007156;">{relation}</strong>
+  </div>
+  <hr />
+  <table>
+    <tr>
+      <th align="left">Name:</th> 
+      <td> {name},{age}</td>
+    </tr>
+  </table>
+  <div><i class="fa fa-phone fa-lg"></i>&nbsp; {phone_num}</div>
+  <hr />
+  `;
+   series.nodes.template.tooltipHTML = tooltipHTML;
+  //`[bold]Relation: {relation}\nName: {name}\n \n `;
+  series.tooltip.getFillFromObject = false;
+  series.tooltip.background.fill = am4core.color("#fff");
+  series.tooltip.label.fill = am4core.color("#000");
+ 
   // Add labels
   // series.nodes.template.label.text = "{relation}";
-  series.nodes.template.label.text =
-    "[bold]Relation: {relation}\n Name: {name}\n Phone: {phone_num}\n Age: {age}";
+  // series.nodes.template.label.text =
+  //   "[bold]Relation: {relation}\n Name: {name}\n Phone: {phone_num}\n Age: {age}";
   series.nodes.template.label.valign = "top";
   series.nodes.template.label.fill = am4core.color("#fff");
   series.nodes.template.label.dy = 10;
   // series.nodes.template.tooltipText =
     // "Name: [bold]{name}\n Age: [bold]{age}\n Phone: [bold]{phone_num}";
   series.fontSize = 11;
-  series.minRadius = 27;
-  series.maxRadius = 27;
+  series.minRadius = 30;
+  series.maxRadius = 30;
   series.nodes.template.circle.disabled = false;
   series.links.template.distance = 2.7;
   series.links.template.strokeWidth = 1.7;
