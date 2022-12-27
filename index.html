@@ -2,12 +2,11 @@
 <html lang="en">
 
 <head>
-
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     body {
       font-family: "Montserrat";
-      font-weight: 700;
     }
 
     .page-content {
@@ -173,7 +172,7 @@
   <div class="shape"></div>
   <div class="shape"></div>
   <div class="shape"></div>
-  <div id="chartdiv" style="height: 1000px; margin-top: -330px"></div>
+  <div id="chartdiv" style="height: 100vh;"></div>
 
 </body>
 <script src="//cdn.amcharts.com/lib/4/core.js"></script>
@@ -211,6 +210,7 @@
       relation: "Customer",
       age: "26",
       phone_num: "7564646464",
+      genColor:"#67B0F5",
       value: 1,
       image:
         "https://mycom-osi.com/wp-content/uploads/2022/05/Untitled-1-1-1536x941.jpg",
@@ -219,6 +219,7 @@
           name: "Aniket Kumar",
           relation: "Brother",
           age: "18",
+          genColor:"#67B0F5",
           phone_num: "6655535377",
           value: 5,
           image: "https://www.esthenos.com/img/members/3.jpg",
@@ -227,6 +228,7 @@
           name: "Seema Kumari",
           relation: "Mother",
           age: "50",
+          genColor:"#F5AEE8",
           phone_num: "7564646464",
           value: 5,
           image:
@@ -236,6 +238,7 @@
           name: "Vijay Kumar",
           relation: "Brother",
           age: "20",
+          genColor:"#67B0F5",
           phone_num: "8875764565",
           value: 5,
           image: "https://www.esthenos.com/img/members/4.jpg",
@@ -244,6 +247,7 @@
           name: "Pooja Kumari",
           relation: "Sister",
           age: "24",
+          genColor:"#F5AEE8",
           phone_num: "6676565446",
           value: 5,
           image:
@@ -253,6 +257,7 @@
           name: "Surendra Kumar",
           relation: "Father",
           age: "55",
+          genColor:"#67B0F5",
           phone_num: "9676465446",
           value: 5,
           image: "https://www.esthenos.com/img/clients/client1.png",
@@ -268,19 +273,15 @@
   series.dataFields.children = "children";
   series.dataFields.linkWith = "link";
   var tooltipHTML =
-    `<div>
-    <strong style="color:#007156;">{relation}</strong>
-  </div>
-  <hr />
-  <table>
-    <tr>
-      <th align="left">Name:</th> 
-      <td> {name},&nbsp;{age}</td>
-    </tr>
-  </table>
-  <div><i class="fa fa-phone fa-lg"></i>&nbsp; {phone_num}</div>
-  <hr />
-  `;
+    `<div style="margin:10px;">
+      <div>
+        <b style="color:{genColor};font-weight:700;">{relation}</b>
+      </div>
+      <hr />
+      <div style="margin:10px 0px;color:#007156;"> {name},&nbsp;{age}
+      </div>  
+      <div style="color:#007156;"><i class="fa fa-phone fa-lg"></i>&nbsp; {phone_num}</div>
+    </div>`;
   series.nodes.template.tooltipHTML = tooltipHTML;
   //`[bold]Relation: {relation}\nName: {name}\n \n `;
   series.tooltip.getFillFromObject = false;
