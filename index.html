@@ -142,20 +142,20 @@
   series.dataFields.children = "children";
   series.dataFields.linkWith = "link";
   var tooltipHTML =
-    `<div style="margin:0px; ">
+    `<div>
       <div>
         <b style="color:{genColor};font-weight:700;">{relation}</b>
       </div>
       <hr />
-      <div style="margin:0px 0px;color:#007156;"> {name},&nbsp;{age}
-      </div>  
-      <div style="color:#007156;"><i class="fa fa-phone fa-lg"></i>&nbsp; {phone_num}</div>
+      <div style="margin: 5px 0px;color:#007156;"> {name},&nbsp;{age}</div>  
+      <div style="color:#007156; margin-bottom:10px;"><i class="fa fa-phone fa-lg"></i>&nbsp; {phone_num}</div>
     </div>`;
   series.nodes.template.tooltipHTML = tooltipHTML;
   //`[bold]Relation: {relation}\nName: {name}\n \n `;
   series.tooltip.getFillFromObject = false;
   series.tooltip.background.fill = am4core.color("#fff");
   series.tooltip.label.fill = am4core.color("#000");
+  // series.tooltip.label.fontSize = 11;
 
   // Add labels
   // series.nodes.template.label.text = "{relation}";
@@ -189,9 +189,9 @@
     am4core.color("#67b0f5"),
     am4core.color("#f5aee8"),
   ];
-    series.nodes.template.togglable = false;
+  series.nodes.template.togglable = false;
   series.maxLevels = 2;
-    series.dataFields.collapsed = "off";
+  series.dataFields.collapsed = "off";
   var icon = series.nodes.template.createChild(am4plugins_bullets.PinBullet);
   icon.image = new am4core.Image();
   icon.image.propertyFields.href = "image";
