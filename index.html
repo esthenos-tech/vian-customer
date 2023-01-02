@@ -36,6 +36,8 @@
       width: 100%;
       height: 700px;
     }
+
+   
   </style>
 </head>
 
@@ -140,12 +142,12 @@
   series.dataFields.children = "children";
   series.dataFields.linkWith = "link";
   var tooltipHTML =
-    `<div style="margin:10px;">
+    `<div style="margin:0px; ">
       <div>
         <b style="color:{genColor};font-weight:700;">{relation}</b>
       </div>
       <hr />
-      <div style="margin:10px 0px;color:#007156;"> {name},&nbsp;{age}
+      <div style="margin:0px 0px;color:#007156;"> {name},&nbsp;{age}
       </div>  
       <div style="color:#007156;"><i class="fa fa-phone fa-lg"></i>&nbsp; {phone_num}</div>
     </div>`;
@@ -168,7 +170,7 @@
   series.minRadius = 30;
   series.maxRadius = 30;
   series.nodes.template.circle.disabled = false;
-  series.links.template.distance = 2;
+  series.links.template.distance = 2.2;
   series.links.template.strokeWidth = 1.7;
   series.links.template.strokeOpacity = 1;
   series.nodes.template.label.dy = 35;
